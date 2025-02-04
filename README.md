@@ -20,9 +20,10 @@ Run the following command in the first terminal:
 
 ```bash
 node server_secure.cjs --public
-
+```
 ### Step 3: Launch the Python Client
 Run the following command in the second terminal:
 
 ```bash
 python3 client.py
+```

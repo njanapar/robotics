@@ -10,3 +10,13 @@ This project demonstrates a simple browser-based application that facilitates se
 
 ---
 
+## 3. HOW TO RUN THE SYSTEM
+
+### Step 1: Open Two Terminal Windows
+Navigate to the `simple_browser_socket` directory in both terminals.
+
+### Step 2: Start the Secure Server
+Run the following command in the first terminal:
+
+```bash
+node server_secure.cjs --public

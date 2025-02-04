@@ -44,3 +44,36 @@ python3 client.py
 - **server_secure.cjs**: Handles WebSocket communication and routes messages.
 - **client.py**: Connects to the WebSocket and sends/receives data.
 - **index.html**: Displays the interface and communicates with the server.
+## Code Explanation
+# Main Class Explanation
+
+## `__init__`:
+- Initializes the graceful shutdown mechanism by creating an instance of `GracefulShutdown`.
+- Subscribes to Socket.IO events (`chat`, `direction`) to listen for messages from the server. It then defines what to do when these events are received.
+- Connects to the Socket.IO server using `sio.connect()` with the server address `'https://localhost:8080'` (can be changed to other IPs).
+- After the connection is established, it enters a loop that runs until the program is shut down, checking every 1/5 Hz (every 5 seconds) to keep the loop running smoothly.
+
+## Socket.IO Events:
+- **`@sio.on('chat')`**: 
+  - Listens for `chat` messages from the server. When a message is received, the `callback_chat` function is called, which prints the received message and sends a reply back to the server.
+  
+- **`@sio.on('direction')`**: 
+  - Listens for `direction` messages. When a direction message (like "up", "down", etc.) is received, it prints the direction and sends a response (`reply`).
+
+## Helper Functions in Main:
+- **`callback_chat(self, data)`**: 
+  - Handles incoming chat messages. It simply prints the data and replies with the same message back to the server.
+
+- **`doSomething(self)`**: 
+  - A placeholder function for doing anything continuously while the program runs. Currently, it doesn't perform any action.
+
+- **`pubNotice(self, txt)`**: 
+  - Sends a notice to the server under the `notices` topic. This could be used for logging or status updates.
+
+- **`shutdown(self)`**: 
+  - Handles the shutdown procedure by disconnecting from the server and cleaning up any resources.
+
+## Main Execution Block:
+- **`if __name__ == "__main__"`**: 
+  - Ensures that when this script is run, an instance of the `Main` class is created, which starts the connection to the server, handles events, and runs the loop.
+
